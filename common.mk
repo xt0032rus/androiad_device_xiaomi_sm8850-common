@@ -275,6 +275,7 @@ PRODUCT_PACKAGES += \
     SettingsOverlayXiaomi \
     SystemUIOverlayXiaomi \
     TelephonyResXiaomi \
+    DeviceAsWebcamResXiaomi \
     WifiOverlayXiaomi
 
 # Pagesize

@@ -269,7 +269,6 @@ vendor.secureprocessor.service_start=1
 ro.recovery.usb.adb.pid=D001
 ro.recovery.usb.fastboot.pid=4EE0
 ro.recovery.usb.vid=18D1
-ro.usb.uvc.enabled=false
 sys.usb.mtp.batchcancel=1
 vendor.usb.controller=a600000.dwc3
 vendor.usb.diag.func.name=ffs
@@ -280,6 +279,7 @@ vendor.usb.rmnet.inst.name=rmnet
 vendor.usb.rndis.func.name=gsi
 vendor.usb.use_ffs_mtp=1
 vendor.usb.use_gadget_hal=1
+ro.usb.uvc.enabled=true
 
 # Volume
 ro.config.alarm_vol_steps=15
