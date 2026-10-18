@@ -25,6 +25,9 @@ $(call inherit-product, packages/modules/Virtualization/apex/product_packages.mk
 # Call the proprietary setup.
 $(call inherit-product, vendor/xiaomi/sm8850-common/sm8850-common-vendor.mk)
 
+# LunarisDolby
+$(call inherit-product, vendor/lunaris/dolby/dolby.mk)
+
 # SHIPPING API
 BOARD_SHIPPING_API_LEVEL := 202504
 PRODUCT_SHIPPING_API_LEVEL := 36
@@ -215,7 +218,7 @@ PRODUCT_COPY_FILES += \
 
 # Keymint
 PRODUCT_PACKAGES += \
-    android.hardware.hardware_keystore.xml
+    android.hardware.hardware_keystore_V4.xml
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.keystore.app_attest_key.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.keystore.app_attest_key.xml \
@@ -309,16 +312,11 @@ PRODUCT_PACKAGES += \
     init.recovery.qcom.rc \
     init.qcom.rc \
     init.target.rc \
-    init.v4a.sh \
     init.xiaomi.rc \
     ueventd.qcom.rc
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.qcom
-
-# ViPER4Android
-PRODUCT_PACKAGES += \
-    ViPER4Android
 
 # MiSound
 PRODUCT_PACKAGES += \

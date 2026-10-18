@@ -15,11 +15,9 @@ AB_OTA_UPDATER := true
 AB_OTA_PARTITIONS += \
     boot \
     dtbo \
-    init_boot \
     odm \
     product \
     pvmfw \
-    recovery \
     system \
     system_dlkm \
     system_ext \
@@ -98,7 +96,7 @@ TARGET_KERNEL_CLANG_VERSION := r563880c
 TARGET_KERNEL_CLANG_PATH := $(abspath .)/prebuilts/clang/host/linux-x86/clang-$(TARGET_KERNEL_CLANG_VERSION)
 
 # Partitions
--include vendor/lineage/config/BoardConfigReservedSize.mk
+-include vendor/infinity/config/BoardConfigReservedSize.mk
 
 BOARD_BOOTIMAGE_PARTITION_SIZE := 100663296
 BOARD_DTBOIMG_PARTITION_SIZE := 23068672
@@ -183,6 +181,12 @@ DEVICE_MANIFEST_CANOE_FILES := \
     $(COMMON_PATH)/configs/vintf/manifest_xiaomi.xml \
     $(COMMON_PATH)/configs/vintf/manifest_canoe.xml
 
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
+    vendor/lunaris/dolby/vintf/dolby_framework_compatibility_matrix.xml
+
+DEVICE_MANIFEST_FILE += \
+    vendor/lunaris/dolby/vintf/dolby_manifest.xml
+    
 # WiFi
 BOARD_WLAN_DEVICE := qcwcn
 BOARD_HOSTAPD_DRIVER := NL80211
@@ -197,6 +201,9 @@ WIFI_DRIVER_STATE_ON := "ON"
 WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
+
+# LunarisDolby
+include vendor/lunaris/dolby/BoardConfigDolby.mk
 
 # Inherit from the proprietary version
 include vendor/xiaomi/sm8850-common/BoardConfigVendor.mk

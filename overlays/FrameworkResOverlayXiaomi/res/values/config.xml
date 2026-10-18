@@ -386,6 +386,10 @@
         <item>/vendor/framework/androidx.camera.extensions.impl.jar</item>
     </string-array>
     
+    <!-- Enable synchronization of the displays refresh rates by applying the default low refresh
+         rate. -->
+    <bool name="config_refreshRateSynchronizationEnabled">true</bool>
+    
     <!-- If true, the display will be shifted around in ambient mode. -->
     <bool name="config_enableBurnInProtection">true</bool>
 
