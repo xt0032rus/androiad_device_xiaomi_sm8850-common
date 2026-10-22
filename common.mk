@@ -25,8 +25,19 @@ $(call inherit-product, packages/modules/Virtualization/apex/product_packages.mk
 # Call the proprietary setup.
 $(call inherit-product, vendor/xiaomi/sm8850-common/sm8850-common-vendor.mk)
 
-# LunarisDolby
-$(call inherit-product, vendor/lunaris/dolby/dolby.mk)
+# LunarisDolby (app only, uses the stock Dolby stack)
+PRODUCT_PACKAGES += \
+    LunarisDolby \
+    XiaomiDolbyResCommon
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/dolby/configs/privapp-permissions-dolby.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-dolby.xml
+
+# Dolby HAL stack (optional, see dolby/hal/switch.mk)
+include $(LOCAL_PATH)/dolby/hal/switch.mk
+ifeq ($(TARGET_USES_LUNARIS_DOLBY_HAL),true)
+$(call inherit-product, vendor/xiaomi/sm8850-common/dolby/dolby-vendor.mk)
+endif
 
 # SHIPPING API
 BOARD_SHIPPING_API_LEVEL := 202504

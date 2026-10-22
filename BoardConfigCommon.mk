@@ -176,12 +176,6 @@ DEVICE_MANIFEST_CANOE_FILES := \
     $(COMMON_PATH)/configs/vintf/manifest_xiaomi.xml \
     $(COMMON_PATH)/configs/vintf/manifest_canoe.xml
 
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-    vendor/lunaris/dolby/vintf/dolby_framework_compatibility_matrix.xml
-
-DEVICE_MANIFEST_FILE += \
-    vendor/lunaris/dolby/vintf/dolby_manifest.xml
-    
 # WiFi
 BOARD_WLAN_DEVICE := qcwcn
 BOARD_HOSTAPD_DRIVER := NL80211
@@ -197,8 +191,14 @@ WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
-# LunarisDolby
-include vendor/lunaris/dolby/BoardConfigDolby.mk
+# Dolby HAL stack (optional, see dolby/hal/switch.mk)
+include $(COMMON_PATH)/dolby/hal/switch.mk
+ifeq ($(TARGET_USES_LUNARIS_DOLBY_HAL),true)
+TARGET_ODM_PROP += $(COMMON_PATH)/dolby/hal/properties/odm.prop
+BOARD_VENDOR_SEPOLICY_DIRS += $(COMMON_PATH)/dolby/hal/sepolicy/vendor
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += $(COMMON_PATH)/dolby/hal/vintf/dolby_framework_compatibility_matrix.xml
+DEVICE_MANIFEST_FILE += $(COMMON_PATH)/dolby/hal/vintf/dolby_manifest.xml
+endif
 
 # Inherit from the proprietary version
 include vendor/xiaomi/sm8850-common/BoardConfigVendor.mk
