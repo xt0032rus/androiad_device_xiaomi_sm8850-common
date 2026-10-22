@@ -1,1 +1,4 @@
 hal_client_domain(vendor_vppservice, vendor_hal_dspmanager)
+
+# FastRPC access for VPP (HVX boot on CDSP/NSP)
+allow vendor_vppservice vendor_qdsp_device:chr_file rw_file_perms;
