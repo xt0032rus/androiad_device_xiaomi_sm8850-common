@@ -9,3 +9,6 @@ allow hal_mfidoca_default hal_mfidoca_service:service_manager { add find };
 allow hal_mfidoca_default tee_device:chr_file rw_file_perms;
 allow hal_mfidoca_default vendor_dmabuf_qseecom_ta_heap_device:chr_file rw_file_perms;
 allow hal_mfidoca_default vendor_miev_device:chr_file rw_file_perms;
+
+allow hal_mfidoca_default property_socket:sock_file write;
+allow hal_mfidoca_default init:unix_stream_socket connectto;
