@@ -1,2 +1,5 @@
-allow vendor_subsystem_ramdump vendor_bsp_data_log_file:dir rw_dir_perms;
-allow vendor_subsystem_ramdump vendor_bsp_data_log_file:file create_file_perms;
+# The ramdump daemon (and its domain) exists only in userdebug/eng builds.
+userdebug_or_eng(`
+  allow vendor_subsystem_ramdump vendor_bsp_data_log_file:dir rw_dir_perms;
+  allow vendor_subsystem_ramdump vendor_bsp_data_log_file:file create_file_perms;
+')
