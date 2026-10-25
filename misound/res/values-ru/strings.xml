@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="misound_title">MiSound</string>
+
+    <!-- Per-output-device profiles (EarpieceEQ v0.21 route system) -->
+    <string name="eq_route_builtin">Встроенные динамики</string>
+    <string name="eq_route_external">Внешний выход</string>
+    <string name="eq_route_unknown">Не удалось определить выход</string>
+    <string name="eq_route_unknown_hint">Android не сообщил об одном конкретном медиавыходе, поэтому обработка и редактирование приостановлены. Выберите один выход в системных элементах управления мультимедиа.</string>
+    <string name="eq_route_paused_hint">Для внешних выходов обработка приостановлена. Переключитесь на встроенные динамики и отключите параметр «Отключать при использовании наушников», чтобы использовать настройки для каждого устройства.</string>
+    <string name="eq_route_active_hint">Изменения сохраняются только для этого устройства. Левый и правый каналы не меняются местами при повороте экрана. Новые устройства начинают с выключенной обработкой и плоским профилем.</string>
+    <string name="eq_route_weak_hint">У этого устройства нет уникального адреса, поэтому оно определяется по типу и названию. Устройства с одинаковыми названиями и пассивные проводные наушники могут использовать один общий профиль.</string>
+</resources>

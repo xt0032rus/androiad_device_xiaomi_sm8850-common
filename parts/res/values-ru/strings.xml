@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- App Name -->
+    <string name="app_name">Xiaomi Parts</string>
+
+    <!-- Touch settings -->
+    <string name="touch_title">Частота опроса сенсора</string>
+    <string name="touch_high_sampling_rate_title">Высокая частота опроса сенсора</string>
+    <string name="touch_high_sampling_rate_footer">Повышает частоту опроса сенсорного экрана</string>
+
+    <!-- MiSound settings (sub-page) -->
+    <string name="misound_title">MiSound</string>
+    <string name="misound_enabled_title">Включить MiSound</string>
+    <string name="misound_enabled_summary">Выводит басы на задний динамик для объёмного звука 2.1</string>
+    <string name="misound_mode_title">Режим</string>
+    <string name="misound_mode_summary">Выберите, как работает нижний динамик</string>
+    <string name="misound_mode_off">Выключено</string>
+    <string name="misound_mode_intelligent">Интеллектуальный</string>
+    <string name="misound_mode_standard">Стандартный</string>
+    <string name="misound_3d_surround_title">3D-звук</string>
+    <string name="misound_3d_surround_summary">Включает обработку объёмного 3D-звука для стереоисточников</string>
+
+    <!-- Earpiece EQ (DynamicsProcessing pre-EQ on the speaker channels) -->
+    <string name="eq_category_title">Эквалайзер разговорного динамика</string>
+    <string name="eq_enabled_title">Включить эквалайзер разговорного динамика</string>
+    <string name="eq_enabled_summary">Применяет отдельный эквалайзер для каждого встроенного динамика</string>
+    <string name="eq_apply_ear_title">Эквалайзер на разговорном динамике</string>
+    <string name="eq_apply_ear_summary">Применяет профиль разговорного динамика к его каналу</string>
+    <string name="eq_apply_bottom_title">Эквалайзер на нижнем динамике</string>
+    <string name="eq_apply_bottom_summary">Применяет профиль нижнего динамика к его каналу</string>
+    <string name="eq_auto_rotate_title">Следовать повороту экрана</string>
+    <string name="eq_auto_rotate_summary">Меняет профили местами (Л/П), когда экран перевёрнут</string>
+    <string name="eq_auto_suspend_title">Отключать при использовании наушников</string>
+    <string name="eq_auto_suspend_summary">Приостанавливает эквалайзер, пока подключён проводной, USB или Bluetooth-звук</string>
+    <string name="eq_edit_earpiece">Изменить профиль разговорного динамика</string>
+    <string name="eq_edit_bottom">Изменить профиль нижнего динамика</string>
+    <string name="eq_preamp_title">Предусилитель</string>
+    <string name="eq_bands_message">Предусилитель: %1$s дБ, активных полос: %2$d</string>
+    <string name="eq_band_freq_hz">%1$d Гц</string>
+    <string name="eq_band_freq_khz">%1$s кГц</string>
+    <string name="eq_gain_value">%1$s дБ</string>
+    <string name="eq_gain_seekbar_label">%1$s: %2$s</string>
+    <string name="eq_reset_title">Сбросить до плоской характеристики</string>
+    <string name="eq_reset_message">Сбросить этот профиль до плоской характеристики (0 дБ на всех полосах)?</string>
+    <string name="eq_reset_ok">Сбросить</string>
+    <string name="eq_reset_cancel">Отмена</string>
+    <string name="eq_reset_summary">Возвращает все полосы этого профиля к 0 дБ</string>
+    <string name="eq_reset_earpiece_title">Сбросить профиль разговорного динамика</string>
+    <string name="eq_reset_bottom_title">Сбросить профиль нижнего динамика</string>
+
+    <!-- Earpiece virtual bass (companion AIDL effect) -->
+    <string name="bass_edit_earpiece">Виртуальный бас: разговорный динамик</string>
+    <string name="bass_edit_bottom">Виртуальный бас: нижний динамик</string>
+    <string name="bass_strength_title">Сила</string>
+    <string name="bass_body_title">Плотность</string>
+    <string name="bass_limiter_title">Ограничитель уровня</string>
+    <string name="bass_ceiling_title">Порог</string>
+    <string name="bass_limiter_on">ограничитель включён</string>
+    <string name="bass_limiter_off">ограничитель выключен</string>
+    <string name="bass_bands_message">Сила %1$d%%, плотность %2$d%%, %3$s</string>
+
+    <!-- Per-output-device profiles (EarpieceEQ v0.21 route system) -->
+    <string name="eq_output_title">Текущий выход</string>
+    <string name="eq_output_clear_title">Забыть профиль этого выхода</string>
+    <string name="eq_output_clear_summary">Удаляет сохранённый эквалайзер для подключённого устройства</string>
+    <string name="eq_output_clear_message">Удалить сохранённый профиль для этого выхода? При следующем подключении будет использован плоский профиль с выключенной обработкой.</string>
+    <string name="eq_output_clear_ok">Удалить</string>
+    <string name="eq_output_cleared">Профиль удалён</string>
+    <string name="eq_route_builtin">Встроенные динамики</string>
+    <string name="eq_route_external">Внешний выход</string>
+    <string name="eq_route_unknown">Не удалось определить выход</string>
+    <string name="eq_route_unknown_hint">Android не сообщил об одном конкретном медиавыходе, поэтому обработка и редактирование приостановлены. Выберите один выход в системных элементах управления мультимедиа.</string>
+    <string name="eq_route_paused_hint">Для внешних выходов обработка приостановлена. Переключитесь на встроенные динамики и отключите параметр «Отключать при использовании наушников», чтобы использовать настройки для каждого устройства.</string>
+    <string name="eq_route_active_hint">Изменения сохраняются только для этого устройства. Левый и правый каналы не меняются местами при повороте экрана. Новые устройства начинают с выключенной обработкой и плоским профилем.</string>
+    <string name="eq_route_weak_hint">У этого устройства нет уникального адреса, поэтому оно определяется по типу и названию. Устройства с одинаковыми названиями и пассивные проводные наушники могут использовать один общий профиль.</string>
+</resources>
