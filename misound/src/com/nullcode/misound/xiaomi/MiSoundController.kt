@@ -59,6 +59,12 @@ internal class MiSoundController private constructor(
     @Volatile
     private var current3dSurround: Int = DEFAULT_3D_SURROUND
 
+    // What was last pushed to the live effect instance. A playback event
+    // alone must not rewrite identical parameters into the HAL.
+    private var lastPushedEffect: MiSoundAudioEffect? = null
+    private var lastPushedMode = -1
+    private var lastPushed3d = -1
+
     // Re-apply the surround profile on every media session.
     private val playbackCallback = object : AudioPlaybackCallback() {
         override fun onPlaybackConfigChanged(configs: List<AudioPlaybackConfiguration>) {
@@ -67,7 +73,7 @@ internal class MiSoundController private constructor(
             }
             dlog(TAG, "onPlaybackConfigChanged: isPlaying=$isPlaying")
             if (isPlaying) {
-                applyCurrentProfile(currentMode)
+                applyCurrentProfile(currentMode, force = false)
             }
         }
     }
@@ -190,8 +196,14 @@ internal class MiSoundController private constructor(
         if (sysValue != DEFAULT_ENABLED) {
             return sysValue == 1
         }
-        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-        return prefs.getBoolean(PREF_ENABLE, true)
+        // Credential-encrypted storage is not available before the first
+        // unlock (Direct Boot); fall back to the default then.
+        return try {
+            PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(PREF_ENABLE, true)
+        } catch (t: IllegalStateException) {
+            true
+        }
     }
 
     /**
@@ -248,10 +260,16 @@ internal class MiSoundController private constructor(
         }
     }
 
-    private fun applyCurrentProfile(mode: Int) {
-        dlog(TAG, "applyCurrentProfile(mode=$mode)")
+    private fun applyCurrentProfile(mode: Int, force: Boolean = true) {
+        dlog(TAG, "applyCurrentProfile(mode=$mode, force=$force)")
         try {
             checkEffect()
+            if (!force && miSoundEffect === lastPushedEffect &&
+                mode == lastPushedMode && current3dSurround == lastPushed3d
+            ) {
+                dlog(TAG, "applyCurrentProfile: unchanged, skipping")
+                return
+            }
             miSoundEffect.superEffectProfile = mode
         } catch (t: Throwable) {
             // Don't let a transient audio HAL hiccup crash the boot receiver.
@@ -260,6 +278,9 @@ internal class MiSoundController private constructor(
         // Push the 3D surround toggle. Wrapped so a missing param id on a
         // future vendor blob doesn't tear down the rest of the pipeline.
         applySubToggle(MISOUND_PARAM_3DSURROUND, current3dSurround, "3dSurround")
+        lastPushedEffect = miSoundEffect
+        lastPushedMode = mode
+        lastPushed3d = current3dSurround
     }
 
     private fun applySubToggle(param: Int, value: Int, label: String) {
