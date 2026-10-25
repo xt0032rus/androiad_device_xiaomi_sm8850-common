@@ -171,7 +171,6 @@ persist.vendor.fingerprint.type=udfps
 persist.sys.fuse.passthrough.enable=true
 
 # GNSS
-persist.backup.ntpServer=0.pool.ntp.org
 
 # Graphics
 debug.egl.hw=0

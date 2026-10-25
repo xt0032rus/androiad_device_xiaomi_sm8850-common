@@ -1,0 +1,11 @@
+# log_fixes: denials seen in logcat of OS4.0.0.15 boot
+
+# Fido (mfidoca) writes persist.vendor.sys.pay.* and uses qseecom heap
+set_prop(hal_mfidoca_default, vendor_payment_security_prop)
+allow hal_mfidoca_default vendor_dmabuf_qseecom_heap_device:chr_file rw_file_perms;
+
+# qti_display_boot sets vendor.display.enable_brightness_drm_prop
+set_prop(qti_display_boot, vendor_displayfeature_prop)
+
+# vendor_init sets persist.vendor.bt.a2dp_offload_cap from vendor.prop
+set_prop(vendor_init, vendor_bt_a2dp_offload_prop)
