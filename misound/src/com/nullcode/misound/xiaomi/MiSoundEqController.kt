@@ -201,9 +201,7 @@ internal class MiSoundEqController private constructor(private val context: Cont
     private fun unregisterCallbacks() {
         if (!registered) return
         settingsObserver?.let { observer ->
-            for (key in OBSERVED_KEYS) {
-                context.contentResolver.unregisterContentObserver(observer)
-            }
+            context.contentResolver.unregisterContentObserver(observer)
         }
         settingsObserver = null
         deviceCallback?.let { audioManager.unregisterAudioDeviceCallback(it) }

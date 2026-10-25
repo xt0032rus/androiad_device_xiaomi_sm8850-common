@@ -15,7 +15,6 @@ android_app {
     system_ext_specific: true,
     privileged: true,
 
-    overrides: [],
     static_libs: [
         "androidx.preference_preference",
         "org.lineageos.settings.resources",

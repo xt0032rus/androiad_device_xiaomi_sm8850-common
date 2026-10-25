@@ -31,8 +31,7 @@
         </receiver>
 
         <service
-            android:name=".touch.TouchReportRateService"
-            android:permission="TouchReportRateService">
+            android:name=".touch.TouchReportRateService">
         </service>
 
         <activity
