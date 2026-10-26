@@ -1,0 +1,3 @@
+# Hardware codec (vEQcvpF) uses the unsigned hexlp HAL and /dev/synx_device
+hal_client_domain(mediacodec, vendor_hal_unsignedhexlp)
+allow mediacodec vendor_synx_device:chr_file rw_file_perms;
