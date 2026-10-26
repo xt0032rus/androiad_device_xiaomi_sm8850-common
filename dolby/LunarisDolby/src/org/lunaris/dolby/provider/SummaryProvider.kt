@@ -14,7 +14,7 @@ import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import org.lunaris.dolby.R
-import org.lunaris.dolby.data.DolbyRepository
+import org.lunaris.dolby.DolbyConstants
 
 private const val KEY_DOLBY = "dolby"
 private const val META_DATA_PREFERENCE_SUMMARY = "com.android.settings.summary"
@@ -56,13 +56,15 @@ class SummaryProvider : ContentProvider() {
 
     private fun getDolbySummary(): String {
         val context = context ?: return ""
-        val repository = DolbyRepository(context)
-        
-        if (!repository.getDolbyEnabled()) {
+        // Read the saved state only: creating a DolbyRepository here would
+        // instantiate a new session-0 effect on every Settings refresh.
+        val prefs = context.getSharedPreferences("dolby_prefs", android.content.Context.MODE_PRIVATE)
+
+        if (!prefs.getBoolean(DolbyConstants.PREF_ENABLE, false)) {
             return context.getString(R.string.dolby_off)
         }
-        
-        val profile = repository.getCurrentProfile()
+
+        val profile = prefs.getString(DolbyConstants.PREF_PROFILE, null)?.toIntOrNull() ?: 0
         val profiles = context.resources.getStringArray(R.array.dolby_profile_entries)
         val profileValues = context.resources.getStringArray(R.array.dolby_profile_values)
         

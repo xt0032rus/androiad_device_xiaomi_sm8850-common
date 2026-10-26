@@ -73,10 +73,14 @@ class DolbyRepository(private val context: Context) : AutoCloseable {
             ?.toIntOrNull()
     }
 
-    private fun restoreSavedProfileIfNeeded() {
+    private fun restoreSavedProfileIfNeeded(forceFull: Boolean = true) {
         val savedProfile = readSavedProfile() ?: return
         if (dolbyEffect.profile != savedProfile) {
             dolbyEffect.profile = savedProfile
+        } else if (!forceFull) {
+            // Effect already runs the saved profile: do not rewrite every
+            // parameter (each write is a full DSP commit).
+            return
         }
         restoreProfilePreset(savedProfile)
         applyProfileSettings(savedProfile)
@@ -169,7 +173,7 @@ class DolbyRepository(private val context: Context) : AutoCloseable {
     fun getCurrentProfile(): Int {
         return try {
             checkEffect()
-            restoreSavedProfileIfNeeded()
+            restoreSavedProfileIfNeeded(forceFull = false)
             dolbyEffect.profile
         } catch (e: Exception) {
             DolbyConstants.dlog(TAG, "Error getting current profile: ${e.message}")
